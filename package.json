@@ -1,0 +1,18 @@
+{
+  "name": "uttoken",
+  "version": "1.0.0",
+  "description": "Smart contract for uttoken",
+  "main": "truffle-config.js",
+  "scripts": {
+    "build": "truffle compile",
+    "migrate-mainnet": "truffle deploy --network mainnet",
+    "migrate-testnet": "truffle deploy --network rinkeby",
+    "console-testnet": "truffle console --network rinkeby",
+    "test": "truffle test"
+  },
+  "dependencies": {
+    "truffle": "^4.0.1",
+    "truffle-hdwallet-provider": "^0.0.3",
+    "zeppelin-solidity": "^1.3.0"
+  }
+}
