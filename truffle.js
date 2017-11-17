@@ -1,8 +1,23 @@
-var HDWalletProvider = require("truffle-hdwallet-provider");
+var ethereumjsWallet = require('ethereumjs-wallet');
+var ProviderEngine = require("web3-provider-engine");
 
-function getWallet(network){
-  return require('fs').readFileSync(__dirname + "/../keystore/wallet_" + network + ".json", "utf8").trim();
-}
+var WalletSubprovider = require('web3-provider-engine/subproviders/wallet.js');
+var Web3Subprovider = require("web3-provider-engine/subproviders/web3.js");
+var Web3 = require("web3");
+var FilterSubprovider = require('web3-provider-engine/subproviders/filters.js');
+
+var privateKey = 'PUT HERE PRIVATE KEY';
+var wallet = ethereumjsWallet.fromPrivateKey(new Buffer(privateKey, "hex"));
+var address = "0x" + wallet.getAddress().toString("hex");
+
+var providerUrl = "https://rinkeby.infura.io";
+var engine = new ProviderEngine();
+
+// filters
+engine.addProvider(new FilterSubprovider());
+engine.addProvider(new WalletSubprovider(wallet, {}));
+engine.addProvider(new Web3Subprovider(new Web3.providers.HttpProvider(providerUrl)));
+engine.start(); // Required by the provider engine.
 
 module.exports = {
 networks: {
@@ -14,9 +29,7 @@ networks: {
     },
     rinkeby: {
         network_id: 64,
-        provider: function() {
-          return new HDWalletProvider(getWallet('rinkeby'), 'https://rinkeby.infura.io/');
-        },
+        provider: engine,
         gas: 6000000,
         gasPrice: 2000000000 // 20 Gwei
     },
@@ -28,4 +41,5 @@ networks: {
     // },
   },
   migrations_directory: './migrations'
-}
+};
+

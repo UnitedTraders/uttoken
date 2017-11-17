@@ -6,13 +6,16 @@
   "scripts": {
     "build": "truffle compile",
     "migrate-mainnet": "truffle deploy --network mainnet",
-    "migrate-testnet": "truffle deploy --network rinkeby",
+    "migrate-testnet": "truffle deploy --network rinkeby1",
     "console-testnet": "truffle console --network rinkeby",
     "test": "truffle test"
   },
   "dependencies": {
+    "bip39": "^2.4.0",
+    "ethereumjs-wallet": "^0.6.0",
     "truffle": "^4.0.1",
-    "truffle-hdwallet-provider": "^0.0.3",
+    "web3": "^0.20.2",
+    "web3-provider-engine": "^13.3.3",
     "zeppelin-solidity": "^1.3.0"
   }
 }
