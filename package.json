@@ -6,7 +6,8 @@
   "scripts": {
     "build": "truffle compile",
     "migrate-mainnet": "truffle deploy --network mainnet",
-    "migrate-testnet": "truffle deploy --network rinkeby1",
+    "console-mainnet": "truffle console --network mainnet",
+    "migrate-testnet": "truffle deploy --network rinkeby",
     "console-testnet": "truffle console --network rinkeby",
     "test": "truffle test"
   },
