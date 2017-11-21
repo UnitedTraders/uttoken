@@ -10,15 +10,13 @@ contract UTToken is StandardToken {
   string public symbol;
   uint8 public decimals;
 
-  function UTToken(uint256 _initialAmount,
-    string _tokenName,
-    uint8 _decimalUnits,
-    string _tokenSymbol
-    ) {
-    balances[msg.sender] = _initialAmount;
-    totalSupply = _initialAmount;
-    name = _tokenName;
-    decimals = _decimalUnits;
-    symbol = _tokenSymbol;
+  function UTToken() {
+    totalSupply = 10000000000000000;
+    balances[msg.sender] = totalSupply;
+    name = "United Traders Token";
+    decimals = 8;
+    symbol = "UTT";
+
+    Transfer(msg.sender, msg.sender, totalSupply);
   }
 }

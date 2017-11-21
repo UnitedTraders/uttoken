@@ -30,7 +30,13 @@ networks: {
         gasPrice: 20000000000 // 20 Gwei
     },
   },
-  migrations_directory: './migrations'
+  migrations_directory: './migrations',
+  solc: {
+      optimizer: {
+      enabled: true,
+      runs: 200
+    }
+  }
 };
 
 function createProvider(network) {
